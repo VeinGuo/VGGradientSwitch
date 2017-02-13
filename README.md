@@ -8,7 +8,7 @@
 # 效果图
 - gif效果图有点卡，可以下载demo后查看效果。
 - 动画可能有些偏差，有任何问题可以issues给我。
-![image](http://ojaltanzc.bkt.clouddn.com/switch_demo_1.gif)
+![image](http://ojaltanzc.bkt.clouddn.com/switch_button_1.gif)
 
 ## 使用
 ```objct

@@ -38,13 +38,14 @@
 - (CAAnimationGroup *)tickToDotAnimationFromValues:(NSArray *)values{
     
     CABasicAnimation *scaleAnimation = [self transformAnimation];
-    CAKeyframeAnimation *lineAnimation = [self lineAnimationWithKeyTimes:@[@.1,@0.4] beginTime:0 values:values];
     scaleAnimation.duration = .05;
     scaleAnimation.beginTime = 0;
     
+    CAKeyframeAnimation *lineAnimation = [self lineAnimationWithKeyTimes:@[@.1,@0.4] beginTime:0 values:values];
+    
     CAAnimationGroup *lineGroup = [CAAnimationGroup animation];
     lineGroup.animations = @[scaleAnimation,lineAnimation];
-    lineGroup.duration = 1;
+    lineGroup.duration = .5;
     lineGroup.repeatCount = 1;
     lineGroup.removedOnCompletion = NO;
     lineGroup.fillMode = kCAFillModeForwards;
@@ -59,18 +60,18 @@
 - (CAAnimationGroup *)dotToCrossAnimationFromValues:(NSArray *)values keyTimes:(NSArray *)keyTimes duration:(CGFloat)duration{
     
     CAKeyframeAnimation *lineAnimation = [self lineAnimationWithKeyTimes:keyTimes beginTime:0 values:values];
+    lineAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     CABasicAnimation *scaleAnimation = [self transformAnimation];
     CGFloat beginTime = [keyTimes.lastObject floatValue];
-    scaleAnimation.beginTime = beginTime;
+    scaleAnimation.beginTime = beginTime-.15;
     scaleAnimation.duration = .1;
-    
+    scaleAnimation.timingFunction  = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     CAAnimationGroup *lineGroup = [CAAnimationGroup animation];
     lineGroup.animations = @[lineAnimation,scaleAnimation];
     lineGroup.duration = duration;
     lineGroup.repeatCount = 1;
     lineGroup.removedOnCompletion = NO;
     lineGroup.fillMode = kCAFillModeForwards;
-    lineGroup.timingFunction  = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     
     return lineGroup;
 }
@@ -81,9 +82,10 @@
 - (CAAnimationGroup *)crossToDotAnimationFromValues:(NSArray *)values keyTimes:(NSArray *)keyTimes duration:(CGFloat)duration{
     
     CAKeyframeAnimation *lineAnimation = [self lineAnimationWithKeyTimes:keyTimes beginTime:0 values:values];
+    lineAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+
     CABasicAnimation *scaleAnimation = [self transformAnimation];
-    CGFloat beginTime = 0;
-    scaleAnimation.beginTime = beginTime;
+    scaleAnimation.beginTime = 0;
     scaleAnimation.duration = .1;
     
     CAAnimationGroup *lineGroup = [CAAnimationGroup animation];
@@ -92,7 +94,6 @@
     lineGroup.repeatCount = 1;
     lineGroup.removedOnCompletion = NO;
     lineGroup.fillMode = kCAFillModeForwards;
-    lineGroup.timingFunction  = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     
     return lineGroup;
 }

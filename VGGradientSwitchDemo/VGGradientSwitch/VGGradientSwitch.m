@@ -139,8 +139,8 @@
                                                                                         (__bridge id)self.knob.dotPath.CGPath]];
     
     CAAnimationGroup *crossAnimationGroup1 = [self.manager dotToCrossAnimationFromValues:@[(__bridge id)self.knob.dotPath.CGPath,
-                                                                                        (__bridge id)self.knob.crossPath1.CGPath] keyTimes:@[@.1, @.4]
-                                                                                        duration:.6];
+                                                                                        (__bridge id)self.knob.crossPath1.CGPath] keyTimes:@[@.05, @.35]
+                                                                                        duration:.55];
     CAAnimationGroup *crossAnimationGroup2 = [self.manager dotToCrossAnimationFromValues:@[(__bridge id)self.knob.dotPath.CGPath,
                                                                                           (__bridge id)self.knob.crossPath2.CGPath] keyTimes:@[@0, @.3]  duration:.5];
     crossAnimationGroup2.delegate = self;
@@ -171,7 +171,7 @@
                                                                                     keyTimes:@[@0, @.3]
                                                                                     duration:.5];
     CAAnimationGroup *crossAnimationGroup2 = [self.manager crossToDotAnimationFromValues:@[(__bridge id)self.knob.crossPath2.CGPath,
-                                                                                           (__bridge id)self.knob.dotPath.CGPath] keyTimes:@[@.1, @.4]  duration:.6];
+                                                                                           (__bridge id)self.knob.dotPath.CGPath] keyTimes:@[@.05, @.35]  duration:.55];
     
     [self.knob.crossShapeLayer1 addAnimation:crossAnimationGroup1 forKey:kCrossToDotAnimationKey];
     [self.knob.crossShapeLayer2 addAnimation:crossAnimationGroup2 forKey:kCrossToDotAnimationKey];
