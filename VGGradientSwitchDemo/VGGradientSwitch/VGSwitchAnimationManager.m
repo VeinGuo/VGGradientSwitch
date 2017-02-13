@@ -82,7 +82,7 @@
     
     CAKeyframeAnimation *lineAnimation = [self lineAnimationWithKeyTimes:keyTimes beginTime:0 values:values];
     CABasicAnimation *scaleAnimation = [self transformAnimation];
-    CGFloat beginTime = [keyTimes.lastObject floatValue];
+    CGFloat beginTime = 0;
     scaleAnimation.beginTime = beginTime;
     scaleAnimation.duration = .1;
     

@@ -17,12 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    VGGradientSwitch *switchButton = [[VGGradientSwitch alloc] init];
+    VGGradientSwitch *switchButton = [[VGGradientSwitch alloc] initWithFrame:CGRectMake(0, 0, 30*1.75, 30)];
+    switchButton.center = self.view.center;
     [switchButton setOn:NO animated:YES];
     switchButton.action = ^(BOOL isOn){
         NSLog(@"%@",isOn?@"打开":@"关闭");
     };
-//    [self.view addSubview:switchButton];
+    [self.view addSubview:switchButton];
 }
 
 
