@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    VGGradientSwitch *switchButton = [[VGGradientSwitch alloc] initWithFrame:CGRectMake(0, 0, 30*1.75, 30)];
+    VGGradientSwitch *switchButton = [[VGGradientSwitch alloc] init];
     switchButton.center = self.view.center;
     [switchButton setOn:NO animated:YES];
     switchButton.action = ^(BOOL isOn){
