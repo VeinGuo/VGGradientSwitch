@@ -9,6 +9,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSString  *kTickToDotAnimationKey = @"kTickToDotAnimationKey";
 static NSString  *kDotToTickAnimationKey = @"kDotToTickAnimationKey";
 static NSString  *kCrossToDotAnimationKey = @"kCrossToDotAnimationKey";
@@ -25,3 +27,5 @@ static NSString  *kDotToCrossAnimationKey = @"kDotToCrossAnimationKey";
 - (CAAnimationGroup *)crossToDotAnimationFromValues:(NSArray *)values keyTimes:(NSArray *)keyTimes duration:(CGFloat)duration;
 
 @end
+
+NS_ASSUME_NONNULL_END

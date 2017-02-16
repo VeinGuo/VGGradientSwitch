@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 // switch上按钮
 @interface VGKnobView : UIView
 
@@ -22,3 +24,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

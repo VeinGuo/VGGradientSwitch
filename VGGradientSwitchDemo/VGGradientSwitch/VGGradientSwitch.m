@@ -78,12 +78,14 @@
     self.manager.rect = self.knob.frame;
 }
 
+#pragma mark - Knob
 - (VGKnobView *)setupKnob{
     CGFloat w = self.frame.size.height - _knobMargin * 2;
     VGKnobView *knob = [[VGKnobView alloc] initWithFrame:CGRectMake(_knobMargin, _knobMargin, w, w)];
     return knob;
 }
 
+#pragma mark - Border
 - (CAShapeLayer *)setupBorder{
     
     CGFloat width = self.frame.size.width;
@@ -99,6 +101,7 @@
     return borderShape;
 }
 
+#pragma mark - GradientView
 - (void)setupGradientView
 {
     UIColor *offColor1 = VG_UIColorFromRGBAlpha(0xef9c29, 1);
@@ -109,7 +112,7 @@
     
     CGFloat w = self.frame.size.width;
     
-    self.gradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width * 4, self.frame.size.height)];
+    self.gradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame) * 3, CGRectGetHeight(self.frame))];
     self.gradientView.backgroundColor = [UIColor clearColor];
     CAGradientLayer *gradientLayer = [self setupGradientLayerWithColors:@[(__bridge id)onColor1.CGColor,
                                                                            (__bridge id)onColor2.CGColor,
@@ -125,7 +128,7 @@
     gradientLayer.locations = @[@0, @.33, @.63, @1];
     gradientLayer.startPoint = CGPointMake(0, 0);
     gradientLayer.endPoint = CGPointMake(1, 0);
-    gradientLayer.frame = CGRectMake(0, 0, width, self.frame.size.height);
+    gradientLayer.frame = CGRectMake(0, 0, width, CGRectGetHeight(self.frame));
     return gradientLayer;
 }
 
@@ -149,7 +152,7 @@
     
     [UIView animateKeyframesWithDuration:.5 delay:.1 options:UIViewKeyframeAnimationOptionCalculationModePaced animations:^{
         self.knob.frame = CGRectMake(CGRectGetWidth(self.frame)-_knobMargin - w, _knobMargin, w, w);
-        self.gradientView.frame = CGRectMake(-self.frame.size.width *2, 0, self.frame.size.width *3, self.frame.size.height);
+        self.gradientView.frame = CGRectMake(-CGRectGetWidth(self.frame) *2, 0, CGRectGetWidth(self.frame) *3, CGRectGetHeight(self.frame));
     } completion:^(BOOL finished) {
         [self setKnobShapeLayerHiddenWithIsOn:NO];
         [self.knob.crossShapeLayer1 addAnimation:crossAnimationGroup1 forKey:kDotToCrossAnimationKey];
@@ -178,7 +181,7 @@
     
     [UIView animateKeyframesWithDuration:.5 delay:.1 options:UIViewKeyframeAnimationOptionCalculationModePaced animations:^{
         self.knob.frame = CGRectMake(_knobMargin, _knobMargin, w, w);
-        self.gradientView.frame = CGRectMake(0, 0, self.frame.size.width *3, self.frame.size.height);
+        self.gradientView.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame) *3, CGRectGetHeight(self.frame));
         
     } completion:^(BOOL finished) {
         [self setKnobShapeLayerHiddenWithIsOn:YES];
@@ -221,13 +224,14 @@
 - (void)setOn:(BOOL)on{
     _on = on;
     CGFloat w = self.frame.size.height - _knobMargin * 2;
+    CGFloat h = self.frame.size.height;
     [self setKnobShapeLayerHiddenWithIsOn:_on];
     if (_on) {
         _knob.frame = CGRectMake(_knobMargin, _knobMargin, w, w);
-        _gradientView.frame = CGRectMake(0, 0, self.frame.size.width *3, self.frame.size.height);
+        _gradientView.frame = CGRectMake(0, 0, self.frame.size.width *3, h);
     }else{
         _knob.frame = CGRectMake(CGRectGetWidth(self.frame)-_knobMargin - w, _knobMargin, w, w);
-        _gradientView.frame = CGRectMake(-self.frame.size.width *2, 0, self.frame.size.width *3, self.frame.size.height);
+        _gradientView.frame = CGRectMake(-CGRectGetWidth(self.frame) *2, 0, CGRectGetWidth(self.frame) *3, h);
     }
 }
 
