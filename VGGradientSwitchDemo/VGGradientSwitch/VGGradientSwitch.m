@@ -16,8 +16,6 @@
     blue:(((rgb)&0xFF) / 255.0f)                \
     alpha:a])
 
-#define borderColor VG_UIColorFromRGBAlpha(0x183937, 0.8)
-
 @interface VGGradientSwitch () <CAAnimationDelegate>
 
 @property (assign, nonatomic) CGFloat borderWidth;
@@ -95,7 +93,7 @@
     UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, width, height) cornerRadius:height / 2];
     borderShape.path = borderPath.CGPath;
     borderShape.fillColor = [UIColor clearColor].CGColor;
-    UIColor *color = borderColor;
+    UIColor *color = VG_UIColorFromRGBAlpha(0x183937, 0.8);
     borderShape.strokeColor = color.CGColor;
     borderShape.lineWidth = self.borderWidth;
     return borderShape;
@@ -111,7 +109,7 @@
     UIColor *onColor2 = VG_UIColorFromRGBAlpha(0x18deb9, 1);
     
     CGFloat w = self.frame.size.width;
-    
+
     self.gradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame) * 3, CGRectGetHeight(self.frame))];
     self.gradientView.backgroundColor = [UIColor clearColor];
     CAGradientLayer *gradientLayer = [self setupGradientLayerWithColors:@[(__bridge id)onColor1.CGColor,
@@ -270,6 +268,25 @@
 
 - (CGFloat)knobMargin{
     return self.frame.size.height / 12;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor{
+    _borderColor = borderColor;
+    _borderShape.strokeColor = borderColor.CGColor;
+}
+
+- (void)setKnobColor:(UIColor *)knobColor{
+    _knobColor = knobColor;
+    _knob.tickShapeLayer.strokeColor = knobColor.CGColor;
+    _knob.crossShapeLayer1.strokeColor = knobColor.CGColor;
+    _knob.crossShapeLayer2.strokeColor = knobColor.CGColor;
+}
+
+- (void)setKnobStrokeWidth:(CGFloat)knobStrokeWidth{
+    _knobStrokeWidth = knobStrokeWidth;
+    _knob.tickShapeLayer.lineWidth = knobStrokeWidth;
+    _knob.crossShapeLayer1.lineWidth = knobStrokeWidth;
+    _knob.crossShapeLayer2.lineWidth = knobStrokeWidth;
 }
 
 @end

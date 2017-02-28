@@ -20,7 +20,9 @@
         NSLog(@"%@",isOn?@"打开":@"关闭");
     };
 ```
-- 也可以直接设置`storyboard`，现在只支持一个On属性初始化。
+
+- 也可以直接设置`storyboard`
+- 支持设置border颜色、knob上颜色、knob线条width
+
 ![image](http://ojaltanzc.bkt.clouddn.com/QQ20170213-160334.png)
-- 暂时不支持设置背景颜色、边框、 ☑️和✖️颜色，将在后续更新。
 
